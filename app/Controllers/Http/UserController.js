@@ -134,6 +134,21 @@ class UserController {
     }
   }
 
+  async logout({ auth, response, auth }) {
+    try {
+      await auth.logout()
+      return response.json({
+        status: 'success',
+        message: 'User logged out'
+      })
+    } catch (error) {
+      return response.status(400).json({
+        status: 'error',
+        message: 'User not logged out'
+      })
+    }
+  }
+
   async deleteProfile({ auth, params, response }) {
     try {
       const user = auth.current.user
@@ -152,6 +167,7 @@ class UserController {
       })
     }
   }
+  
 }
 
 

@@ -37,6 +37,8 @@ Route.group(() => {
 
 Route.put('/change-password', 'UserController.changePassword')
 
+Route.post('/logout', 'UserController.logout')
+
 Route
   .delete('/delete-account/:id', 'UserController.deleteProfile')
   .middleware(['auth:jwt'])
