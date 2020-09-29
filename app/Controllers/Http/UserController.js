@@ -13,6 +13,7 @@ class UserController {
         data: token
       })
     } catch (error) {
+      console.log(response)
       return response.status(400).json({
         status: 'error',
         message: 'There was a problem creating user'
@@ -134,11 +135,15 @@ class UserController {
     }
   }
 
-  async logout({ auth, response, auth }) {
+  async logout({ auth, response }) {
     try {
-      await auth.logout()
+      const user = await User.find(1)
+      await auth
+        .authenticator('jwt')
+        .revokeTokensForUser(user)
       return response.json({
         status: 'success',
+        access_token: null,
         message: 'User logged out'
       })
     } catch (error) {
