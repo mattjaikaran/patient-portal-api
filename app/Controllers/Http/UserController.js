@@ -13,7 +13,7 @@ class UserController {
         data: token
       })
     } catch (error) {
-      console.log(response)
+      // console.log(response)
       return response.status(400).json({
         status: 'error',
         message: 'There was a problem creating user'
